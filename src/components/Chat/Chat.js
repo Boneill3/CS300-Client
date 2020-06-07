@@ -45,9 +45,10 @@ const Chat = ({location}) => {
             setMessages([...messages, message]);
         });
 
-        socket.on("roomData", ({ onlineStudents, offlineStudents }) => {
+        socket.on("roomData", ({ room, onlineStudents, offlineStudents }) => {
             setOnlineStudents(onlineStudents);
             setOfflineStudents(offlineStudents);
+            setRoom(room);
         });
 
     }, []);
