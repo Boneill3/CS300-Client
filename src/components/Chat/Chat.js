@@ -41,8 +41,13 @@ const Chat = ({location}) => {
     }, [ENDPOINT, location.search]);
 
     useEffect(() => {
+        socket.on('history', (history) => {
+            setMessages(history.concat(messages));
+        });
+
         socket.on('message', (message) => {
             setMessages([...messages, message]);
+            console.log("MESSAGES", messages)
         });
 
         socket.on("roomData", ({ room, onlineStudents, offlineStudents }) => {
@@ -51,7 +56,7 @@ const Chat = ({location}) => {
             setRoom(room);
         });
 
-    }, []);
+    }, [messages]);
 
     const sendMessage = (event) => {
         event.preventDefault();
