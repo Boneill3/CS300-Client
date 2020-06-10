@@ -25,8 +25,13 @@ const CourseList = ({ location }) => {
     return (
         <div>
             <div>
-                <h2>Courses Go Here</h2>
-                {courses.map((course, i) => <div key={i}><Link to={`/chat?name=${name}&room=${course._id}`}>{course.Name}</Link></div>)}
+                <h2>Summer 2020 Online Class List</h2>
+                {courses.map((course, i) => 
+                    <div key={i}>
+                        <Link to={`/chat?name=${name}&room=${course._id}`}>{course.Name}</Link>
+                        <Link to={`/course/${course._id}/edit?name=${name}`}>Edit</Link>
+                    </div>
+                )}
             </div>
         </div>
     )
